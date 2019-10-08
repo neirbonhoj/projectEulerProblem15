@@ -23,26 +23,26 @@ public class LatticePathRecursion {
 			if(startPos.x+1>n){
 				//if the right spot does not exist, only count the number of paths from the spot to the bottom
 				Coordinate bottomCoord = new Coordinate(startPos.x, startPos.y+1);
-				long count = move(nextCoord);
-				pathMagnitudes.put(nextCoord, count);
+				long count = move(bottomCoord);
+				pathMagnitudes.put(bottomCoord, count);
 				return count;
 			} else if(startPos.y+1>n){
 				//if below does not exist, only count the number of paths from the spot to the right
 				Coordinate rightCoord = new Coordinate(startPos.x+1, startPos.y);
-				long count = move(nextCoord);
-				pathMagnitudes.put(nextCoord, count);
+				long count = move(rightCoord);
+				pathMagnitudes.put(rightCoord, count);
 				return count;
 			} else {
 				//if both spots (to the right and below) exist, then calculate the paths from each spot
 				Coordinate rightCoord = new Coordinate(startPos.x+1, startPos.y);
 				Coordinate bottomCoord = new Coordinate(startPos.x, startPos.y+1);
 
-				long countRight = move(new Coordinate(startPos.x+1, startPos.y));
-				long countLeft = move(new Coordinate(startPos.x, startPos.y+1));
+				long countRight = move(rightCoord);
+				long countBottom = move(bottomCoord);
 
-				pathMagnitudes.put(new Coordinate(startPos.x+1, startPos.y), countRight);
-				pathMagnitudes.put(new Coordinate(startPos.x, startPos.y+1), countLeft);
-				return countRight+countLeft;
+				pathMagnitudes.put(rightCoord, countRight);
+				pathMagnitudes.put(bottomCoord, countBottom);
+				return countRight+countBottom;
 			}
 		}
 	}
