@@ -17,6 +17,7 @@ public class LatticePathRecursion {
 			return 1;
 		} else if(pathMagnitudes.get(startPos)!=null || pathMagnitudes.get(new Coordinate(startPos.y, startPos.x))!=null){
 			//If a specific path has already been calculated, find it in the hashmap and return the value (this is essential to solving)
+			//Also check for the reciprocal of the point - the number of paths equal: (4,5) == (5,4)
 			return (pathMagnitudes.get(startPos)!=null) ? pathMagnitudes.get(startPos) : pathMagnitudes.get(new Coordinate(startPos.y, startPos.x));
 		} else {
 			if(startPos.x+1>n){
